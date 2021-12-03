@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\DashboardController;
+require __DIR__.'/auth.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-use App\Http\Controllers\DashboardController;
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
+Route::resource('schedules',ScheduleController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,9 +28,6 @@ Route::get('/dashboard', function () {
 
 // Auth::routes();
 
-require __DIR__.'/auth.php';
 
-use App\Http\Controllers\ScheduleController;
 // Route::get('/',[ScheduleController::class, 'index']);
 
-Route::resource('schedules','ScheduleController@index');

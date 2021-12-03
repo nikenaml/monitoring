@@ -11,7 +11,7 @@ class Schedule extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'type', 'description'
+        'name', 'slug', 'type', 'description'
     ];
 
     protected $hidden = [
@@ -20,6 +20,6 @@ class Schedule extends Model
 
     public function comments()
     {
-        // return $this->hasMany(Comment::class,'schedule_id');
+        return $this->hasMany(FalseAlarm::class,'schedule_id');
     }
 }

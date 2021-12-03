@@ -13,21 +13,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title"> Daftar Data Masuk</h4>
-                        <div class="row mt-5">
-                            <div class="col-md-6">
-                                <form action="/products" class="form-inline" method="GET">
-                                    <div class="form-group mr-sm-3 mb-2">
-                                        <input type="search" name="search" class="form-control" placeholder="Search by name">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
-                                </form>
-                            </div>
-
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
+                        <h4 class="box-title"> Daftar Data Schedule</h4>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
@@ -37,34 +23,37 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Type</th>
+                                        <th>Description</th>
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @forelse ($number ?? '' as $no)
+                                    @forelse ($sch ?? '' as $s)
                                         <tr>
-                                            <td>{{$no->id}}</td>
-                                            <td>{{$no->name}}</td>
-                                            <td>{{$no->type}}</td>
-                                            <td>{{$no->description}}</td>
-                                            <td>
+                                            <td>{{$s->id}}</td>
+                                            <td>{{$s->name}}</td>
+                                            <td>{{$s->type}}</td>
+                                            <td>{{strip_tags($s->description)}}</td>
 
-                                                <a href="{{route('schedules.edit', $no->id)}}" class="btn btn-primary btn-sm">
+                                            <td>
+                                                <a href="{{route('schedules.edit', $s->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
 
                                                 <!-- tombol delete dibuat dalam bentuk form yang dibungkus, kenapa button di taroh atau di bungkus di form agar bisa di haous langsung tapi kenapa di form bukan di link? karna menggunakan method delete nawaan laravel/resorce laravel, jadi ga perlu nambahin action -->
-                                                <!-- <form action="{{route('products.destroy', $item->id)}}" method="post" class="d-inline"> -->
+                                                <form action="{{route('schedules.destroy', $s->id)}}"
+                                                    method="post"
+                                                    class="d-inline">
                                                     <!-- diutuhkan agar saat mengirim form tidak ada masalah -->
-                                                    <!-- @csrf
+                                                    @csrf
                                                     @method('delete')
                                                     <button class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
-                                                    </button> -->
-                                                <!-- </form> -->
-                                                <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $no->id }}" data-action="{{ route('products.destroy',$no->id) }}">  <i class="fa fa-trash"></i></button>
+                                                    </button>
+                                                </form>
+                                                <!-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $s->id }}" data-action="{{ route('schedules.destroy',$s->id) }}">  <i class="fa fa-trash"></i></button> -->
                                             </td>
                                         </tr>
                                     <!-- ini opsi jika datanya tidak ada, akan langsung di alihkan ke empty -->
