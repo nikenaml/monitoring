@@ -9,10 +9,10 @@
                     </li>
                     <li class="menu-title">Data</li><!-- /.menu-title -->
                     <li class="">
-                        <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Data Kesalahan</a>
+                        <a href="{{ route('falsealarms.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Data False Alarm</a>
                     </li>
                     <li class="">
-                        <a href="#"> <i class="menu-icon fa fa-plus"></i>Tambah Data Kesalahan</a>
+                        <a href="{{ route('falsealarms.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Data False Alarm</a>
                     </li>
 
                     <li class="menu-title">Schedule</li><!-- /.menu-title -->

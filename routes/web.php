@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\FalseAlarmController;
+
 require __DIR__.'/auth.php';
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +22,10 @@ require __DIR__.'/auth.php';
 // });
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
-Route::resource('schedules',ScheduleController::class);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Auth::routes();
+Route::resource('schedules',ScheduleController::class);
 
-
-// Route::get('/',[ScheduleController::class, 'index']);
-
+Route::resource('falsealarms',FalseAlarmController::class);

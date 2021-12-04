@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\FalseAlarmRequest;
+use App\Models\Schedule;
+use App\Models\FalseAlarm;
+
 use Illuminate\Http\Request;
 
 class FalseAlarmController extends Controller
@@ -23,7 +27,11 @@ class FalseAlarmController extends Controller
      */
     public function index()
     {
-        //
+        $fas = FalseAlarm::with('schedule')->get();
+
+        return view('pages.falsealarms.index')->with([
+            'fas' => $fas
+        ]);
     }
 
     /**
@@ -33,7 +41,11 @@ class FalseAlarmController extends Controller
      */
     public function create()
     {
-        //
+        $schedules = Schedule::all();
+
+        return view('pages.falsealarms.create')->with([
+            'schedules' => $schedules
+        ]);
     }
 
     /**

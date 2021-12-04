@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFalsealarmsTable extends Migration
+class CreateFalseAlarmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFalsealarmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('falsealarms', function (Blueprint $table) {
+        Schema::create('false_alarms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('tanggal_komentar');
             $table->string('sum_alert_email');
@@ -33,6 +33,6 @@ class CreateFalsealarmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('falsealarms');
+        Schema::dropIfExists('false_alarms');
     }
 }
