@@ -22,13 +22,53 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendor/richtexteditor/richtexteditor/rte.js') }}"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '.editor' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+    </script> -->
+
+    <!-- <script type="text/javascript" src="{{ asset('vendor/richtexteditor/richtexteditor/rte.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/richtexteditor/richtexteditor/plugins/all_plugins.js') }}"></script>
 
     <script>
-	var editor1 = new RichTextEditor(".div_editor1");
+	var editor1 = new RichTextEditor(".editor");
 	//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
-    </script>
+    </script> -->
+
+    <!-- <script src="https://cdn.tiny.cloud/1/mrijo5xd55uz5y0lorsfunbjov873qsgoaf6smpyo96mgtrw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+        selector: '.editor',  // change this value according to your HTML
+        plugins: 'lists',
+        toolbar: 'numlist bullist',
+        lists_indent_on_tab: false
+        });
+    </script> -->
+
+    <script src="{{ asset('vendor/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '.editor',
+            height: 200,
+            plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+            'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist | link | ' + 'forecolor backcolor | ',
+            menubar: 'file edit view insert format tools table help',
+            content_css: 'css/content.css'
+        });
+  </script>
 
     <!-- script untuk memunculkan modal secara otomatis dari url, load modal menggunakan ajax secara otomatis -->
     <script>

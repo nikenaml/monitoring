@@ -18,8 +18,8 @@ class Schedule extends Model
 
     ];
 
-    public function comments()
+    public function sches()
     {
-        return $this->hasMany(FalseAlarm::class,'schedule_id');
+        return $this->hasMany(FalseAlarm::class,'schedules_id');
     }
 }

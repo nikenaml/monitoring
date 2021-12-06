@@ -28,8 +28,7 @@
                 <!-- ckeditor berfungsi membuat format tulisan word di dalam textarea yang meliputi ada bold,italic,underline dam format dari tulisan word lainnya -->
                 <div class="form-group">
                     <label for="description" class="form-control-label">Deskripsi Schedule</label>
-                    <textarea name="description" class="div_editor1 form-control @error('description') is-invalid @enderror">{{old('description')?old('description'):$s->description}}
-                    </textarea>
+                    <textarea name="description" class="editor form-control @error('description') is-invalid @enderror">{{old('description')?old('description'):$s->description}}</textarea>
                     @error('description') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 

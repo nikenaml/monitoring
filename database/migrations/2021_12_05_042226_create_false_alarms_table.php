@@ -15,11 +15,12 @@ class CreateFalseAlarmsTable extends Migration
     {
         Schema::create('false_alarms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('tanggal_komentar');
-            $table->string('sum_alert_email');
-            $table->integer('schedules_id');
+            $table->date('tanggal_alert');
+            // $table->string('schedules_id');
+            $table->string('note_alert_schedule');
+            $table->integer('sum_alert_email');
             $table->string('id_komentar');
-            $table->string('sum_false_alarm');
+            $table->integer('sum_false_alarm');
 
             $table->softDeletes();
             $table->timestamps();

@@ -11,15 +11,16 @@ class FalseAlarm extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tanggal_komentar', 'sum_alert_email', 'schedule_id', 'id_komentar', 'sum_false_alarm'
+        'tanggal_alert', 'note_alert_schedule', 'sum_alert_email', 'id_komentar', 'sum_false_alarm'
     ];
+    // 'schedules_id',
 
     protected $hidden = [
 
     ];
 
-    public function comments()
+    public function schedule()
     {
-        return $this->belongsTo(Schedule::class,'schedule_id', 'id');
+        return $this->belongsTo(Schedule::class,'schedules_id', 'id');
     }
 }

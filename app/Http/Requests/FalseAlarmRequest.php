@@ -24,11 +24,12 @@ class FalseAlarmRequest extends FormRequest
     public function rules()
     {
         return [
-            'tanggal_komentar' => 'required',
+            'tanggal_alert' => 'required',
+            // 'schedules_id' => 'required|integer|exists:schedules,id',
+            'note_alert_schedule' => 'required',
             'sum_alert_email' => 'required|integer',
-            'schedules_id' => 'required|integer|exists:schedules,id',
-            'id_komentar' => 'required|biginteger',
-            'sum_false_alarm' => 'required|integer',
+            'id_komentar' => 'required',
+            'sum_false_alarm' => 'required|integer'
         ];
     }
 }

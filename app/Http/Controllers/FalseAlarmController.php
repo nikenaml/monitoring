@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\FalseAlarmRequest;
 use App\Models\Schedule;
+use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
 
 use Illuminate\Http\Request;
@@ -27,7 +27,8 @@ class FalseAlarmController extends Controller
      */
     public function index()
     {
-        $fas = FalseAlarm::with('schedule')->get();
+        // $fas = FalseAlarm::with('schedule')->get();
+        $fas = FalseAlarm::all();
 
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
@@ -41,11 +42,13 @@ class FalseAlarmController extends Controller
      */
     public function create()
     {
-        $schedules = Schedule::all();
+        // $schedules = Schedule::all();
+        // $fas = FalseAlarm::all();
 
-        return view('pages.falsealarms.create')->with([
-            'schedules' => $schedules
-        ]);
+        return view('pages.falsealarms.create');
+        // ->with([
+        //     'fas' => $fas
+        // ]);
     }
 
     /**
@@ -54,9 +57,13 @@ class FalseAlarmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FalseAlarmRequest $request)
     {
-        //
+        $data = $request->all();
+        // $data['slug'] = Str::slug($request->name);
+
+        FalseAlarm::create($data);
+        return redirect()->route('falsealarms.index');
     }
 
     /**
@@ -78,19 +85,29 @@ class FalseAlarmController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $fas = FalseAlarm::with('schedule')->get();
+        $fa = FalseAlarm::findOrFail($id);
+
+        return view('pages.falsealarms.edit')->with([
+            'fa' => $fa
+        ]);
     }
 
-    /**
+    /**mjbv
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FalseAlarmRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $fa = FalseAlarm::findOrFail($id);
+        $fa->update($data);
+
+        return redirect()->route('falsealarms.index');
     }
 
     /**
@@ -101,6 +118,9 @@ class FalseAlarmController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fa = FalseAlarm::findOrFail($id);
+        $fa->delete();
+
+        return redirect()->route('falsealarms.index');
     }
 }

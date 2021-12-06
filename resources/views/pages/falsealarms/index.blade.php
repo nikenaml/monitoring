@@ -22,10 +22,12 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Tanggal Alert</th>
-                                        <th>Jumlah Alert</th>
-                                        <th>Waktu Schedule</th>
-                                        <th>Id Komentar False</th>
-                                        <th>Jumlah Komentar False</th>
+                                        <!-- <th>Waktu Schedule</th> -->
+                                        <th>Note Jumlah Alert per schedule</th>
+                                        <th>Total Alert all schedule</th>
+                                        <!-- <th>Id Komentar Salah Prediksi per Schedule</th> -->
+                                        <th>Jumlah Komentar Salah Prediksi All Schedule</th>
+                                        <th>Persentase Salah Prediksi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -34,20 +36,21 @@
                                     @forelse ($fas ?? '' as $fa)
                                         <tr>
                                             <td>{{$fa->id}}</td>
-                                            <td>{{$fa->tanggal_komentar}}</td>
+                                            <td>{{$fa->tanggal_alert}}</td>
+                                            <td>{{strip_tags($fa->note_alert_schedule)}}</td>
                                             <td>{{$fa->sum_alert_email}}</td>
-                                            <td>{{$fa->schedule->name}}</td>
-                                            <td>{{$fa->id_komentar}}</td>
-                                            <td>{{$fa->sum_fales_alarm}}</td>
+                                            <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
+                                            <td>{{$fa->sum_false_alarm}}</td>
+                                            <td>{{sprintf("%.3f", $fa->sum_false_alarm / $fa->sum_alert_email)}}</td>
 
                                             <td>
                                                 <a href="{{route('falsealarms.edit', $fa->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
 
-                                                <!-- <form action="{{route('falsealarms.destroy', $fa->id)}}"
+                                                <form action="{{route('falsealarms.destroy', $fa->id)}}"
                                                     method="post"
-                                                    class="d-inline"> -->
+                                                    class="d-inline">
 
                                                     @csrf
                                                     @method('delete')
@@ -55,7 +58,7 @@
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <!-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $s->id }}" data-action="{{ route('schedules.destroy',$s->id) }}">  <i class="fa fa-trash"></i></button> -->
+                                                <!-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $fa->id }}" data-action="{{ route('falsealarms.destroy',$fa->id) }}">  <i class="fa fa-trash"></i></button> -->
                                             </td>
                                         </tr>
 
