@@ -24,9 +24,9 @@
                                         <th>Tanggal Alert</th>
                                         <!-- <th>Waktu Schedule</th> -->
                                         <th>Note Jumlah Alert per schedule</th>
-                                        <th>Total Alert all schedule</th>
+                                        <th>Total Alert</th>
                                         <!-- <th>Id Komentar Salah Prediksi per Schedule</th> -->
-                                        <th>Jumlah Komentar Salah Prediksi All Schedule</th>
+                                        <th>Jumlah Komentar Salah Prediksi</th>
                                         <th>Persentase Salah Prediksi</th>
                                         <th>Action</th>
                                     </tr>
@@ -44,6 +44,15 @@
                                             <td>{{sprintf("%.3f", $fa->sum_false_alarm / $fa->sum_alert_email)}}</td>
 
                                             <td>
+                                                <a href="#mymodal"
+                                                    data-remote="{{ route('falsealarms.show', $fa->id) }}"
+                                                    data-toggle="modal"
+                                                    data-target="#mymodal"
+                                                    data-title="Detail waktu {{ $fa->tanggal_alert}}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+
                                                 <a href="{{route('falsealarms.edit', $fa->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>

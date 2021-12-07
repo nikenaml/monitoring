@@ -23,4 +23,9 @@ class FalseAlarm extends Model
     {
         return $this->belongsTo(Schedule::class,'schedules_id', 'id');
     }
+
+    public function details()
+    {
+        return $this->hasMany(FADetail::class, 'falsealarms_id');
+    }
 }
