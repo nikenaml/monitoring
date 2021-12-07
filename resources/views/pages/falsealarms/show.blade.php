@@ -10,62 +10,17 @@
     </tr>
 
     <tr>
-        <th>Nomor</th>
-        <td>{{ $item->number }}</td>
+        <th>Total Alert All Schedule</th>
+        <td>{{ $item->sum_alert_email }}</td>
     </tr>
 
     <tr>
-        <th>Alamat</th>
-        <td>{{ $item->address }}</td>
+        <th>Id Komentar Salah Prediksi per Schedule</th>
+        <td>{{ $item->id_komentar }}</td>
     </tr>
 
     <tr>
-        <th>Total Transaksi</th>
-        <td>{{ $item->transaction_total }}</td>
-    </tr>
-
-    <tr>
-        <th>Status Transaksi</th>
-        <td>{{ $item->transaction_status }}</td>
-    </tr>
-
-    <tr>
-        <th>Pembelian Produk</th>
-        <td>
-            <table class="table table-bordered w-100">
-                <tr>
-                    <th>Nama</th>
-                    <th>Tipe</th>
-                    <th>Harga</th>
-                </tr>
-                @foreach ($item->details as $detail)
-                    <tr>
-                        <td>{{ $detail->product->name }}</td>
-                        <td>{{ $detail->product->type }}</td>
-                        <td>Rp. {{ $detail->product->price }}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </td>
+        <th>Jumlah Komentar Salah Prediksi All Schedule</th>
+        <td>{{ $item->sum_false_alarm }}</td>
     </tr>
 </table>
-
-<div class="row">
-    <div class="col-4">
-        <a href="{{ route('transactions.status', $item->id) }}?status=SUCCESS" class="btn btn-success btn-block">
-            <i class="fa fa-check"></i>Set Sukses
-        </a>
-    </div>
-
-    <div class="col-4">
-        <a href="{{ route('transactions.status', $item->id) }}?status=FAILED" class="btn btn-warning btn-block">
-            <i class="fa fa-times"></i>Set Gagal
-        </a>
-    </div>
-
-    <div class="col-4">
-        <a href="{{ route('transactions.status', $item->id) }}?status=PENDING" class="btn btn-info btn-block">
-            <i class="fa fa-spinner"></i>Set Pending
-        </a>
-    </div>
-</div>
