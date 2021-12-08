@@ -74,7 +74,8 @@ class FalseAlarmController extends Controller
      */
     public function show($id)
     {
-        $fa = FalseAlarm::with('detaills.falsealarm')->findOrFail($id);
+        // $fa = FalseAlarm::with('details.falsealarm')->findOrFail($id);
+        $fa = FalseAlarm::findOrFail($id);
 
         return view('pages.falsealarms.show')->with([
             'fa' => $fa

@@ -48,11 +48,18 @@
                                                     data-remote="{{ route('falsealarms.show', $fa->id) }}"
                                                     data-toggle="modal"
                                                     data-target="#mymodal"
-                                                    data-title="Detail waktu {{ $fa->tanggal_alert}}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
+                                                <div id="myModal" class="modal fade text-center">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- data-title="Detail waktu {{ $fa->tanggal_alert}}" -->
                                                 <a href="{{route('falsealarms.edit', $fa->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
