@@ -53,4 +53,8 @@
             height: 160px;
         }
 
+        .padded {
+            padding-bottom: 50px;
+        }
+
     </style>

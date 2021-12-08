@@ -52,12 +52,33 @@
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
-                                                <div id="myModal" class="modal fade text-center">
-                                                    <div class="modal-dialog">
+                                                <div id="mymodal" class="modal fade text-center">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
                                                         <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body"></div>
+                                                        <div class="modal-footer"></div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="mymodal" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body"></div>
+                                                        <div class="modal-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
 
                                                 <!-- data-title="Detail waktu {{ $fa->tanggal_alert}}" -->
                                                 <a href="{{route('falsealarms.edit', $fa->id)}}" class="btn btn-primary btn-sm">
