@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Monitoring Social Listening Tools</title>
+    <title>Monitoring Evaluasi Model Social Listening Tools</title>
     <meta name="description" content="Monitoring Social Listening Tools">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

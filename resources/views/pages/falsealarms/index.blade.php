@@ -8,12 +8,53 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+    @if(Session::has('success'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+    </div>
+    @endif
+
+    @if(Session::has('info'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-info">
+            {{Session::get('info')}}
+        </div>
+    </div>
+    @endif
+
+    @if(Session::has('error'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+    </div>
+    @endif
+
     <div class="orders">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title"> Daftar Data False Alarm</h4>
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <form action="/falsealarm" class="form-inline" method="GET">
+                                    <div class="form-group mr-sm-3 mb-2">
+                                        {{csrf_field()}}
+                                        <input type="date" name="from" class="form-control" value="{{date('Y-m-d')}}">
+                                        <input type="date" name="to" class="form-control ml-3" value="{{date('Y-m-d')}}">
+                                        <button type="submit" class="btn btn-primary ml-2">View</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-md-6">
+                                <a class="btn btn-primary float-right" href="{{ URL::to('/falsealarm/pdf') }}" target="_blank">Export to PDF</a>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
@@ -41,7 +82,7 @@
                                             <td>{{$fa->sum_alert_email}}</td>
                                             <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
                                             <td>{{$fa->sum_false_alarm}}</td>
-                                            <td>{{sprintf("%.3f", $fa->sum_false_alarm / $fa->sum_alert_email)}}</td>
+                                            <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td>
 
                                             <td>
                                                 <a href="#mymodal"
@@ -108,11 +149,13 @@
                                     @endforelse
                                 </tbody>
                             </table>
-
-
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <script type="text/javascript">
   $("body").on("click",".remove-user",function(){
     var current_object = $(this);

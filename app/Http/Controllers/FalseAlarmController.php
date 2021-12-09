@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
+// use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
 
 use Illuminate\Http\Request;
 
@@ -29,10 +32,14 @@ class FalseAlarmController extends Controller
     {
         // $fas = FalseAlarm::with('schedule')->get();
         $fas = FalseAlarm::all();
+        // untuk ambil data di db berdasarkan paginate halaman
+        // $fas = FalseAlarm::paginate(5);
 
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
         ]);
+
+        // return view('pages.falsealarms.index', compact('fas'));
     }
 
     /**
@@ -63,7 +70,7 @@ class FalseAlarmController extends Controller
         // $data['slug'] = Str::slug($request->name);
 
         FalseAlarm::create($data);
-        return redirect()->route('falsealarms.index');
+        return redirect()->route('falsealarms.index')->with('success','Data berhasil ditambahkan!');
     }
 
     /**
@@ -112,7 +119,7 @@ class FalseAlarmController extends Controller
         $fa = FalseAlarm::findOrFail($id);
         $fa->update($data);
 
-        return redirect()->route('falsealarms.index');
+        return redirect()->route('falsealarms.index')->with('info','Data berhasil diperharui!');
     }
 
     /**
@@ -126,6 +133,41 @@ class FalseAlarmController extends Controller
         $fa = FalseAlarm::findOrFail($id);
         $fa->delete();
 
-        return redirect()->route('falsealarms.index');
+        return redirect()->route('falsealarms.index')->with('error','Data berhasil dihapus!');
+    }
+
+    // public function cetakPdf(){
+    //     $fas = FalseAlarm::all();
+    //     $pdf = PDF::loadView('pages.falsealarms.laporanpdf', ['fas' => $fas]);
+    //     return $pdf->stream('Laporan Daftar False Alarm.pdf');
+    // }
+
+    // public function cetak_pdf()
+    // {
+    // 	// $fas= FalseAlarm::all();
+    //     $fas = FalseAlarm::findOrFail($id);
+
+    // 	$pdf = PDF::loadview('pages.falsealarms.laporanpdf',['fas'=>$fas]);
+    // 	return $pdf->download('laporan-pegawai-pdf');
+    // }
+
+
+
+    public function createPDF() {
+        // retreive all records from db
+        $fas = FalseAlarm::all();
+
+        // share data to view
+        view()->share('fas',$fas);
+        $pdf = PDF::loadView('pages.falsealarms.laporanpdf', $fas);
+
+        // download PDF file with download method
+        return $pdf->stream('Rekap Laporan Data False Alarm.pdf');
+    }
+
+    public function searchBydate(Request $request)
+    {
+        $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get();
+        return view('pages.falsealarms.index',compact('fas'));
     }
 }

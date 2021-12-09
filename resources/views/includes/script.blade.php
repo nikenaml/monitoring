@@ -23,6 +23,8 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.8.2/dist/alpine.min.js"></script>
+
     <!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
 
     <script>
@@ -71,18 +73,20 @@
         });
     </script>
 
-<script>
-    jQuery(document).ready(function($){
-        $('#mymodal').on('show.bs.modal', function(e){
-            var button = $(e.relatedTarget);
-            var modal = $(this);
+    <script>
+        jQuery(document).ready(function($){
+            $('#mymodal').on('show.bs.modal', function(e){
+                var button = $(e.relatedTarget);
+                var modal = $(this);
 
-            modal.find('.modal-body').load(button.data("remote"));
+                modal.find('.modal-body').load(button.data("remote"));
 
-            modal.find('.modal-title').html(button.data("title"));
+                modal.find('.modal-title').html(button.data("title"));
+            });
         });
-    });
-</script>
+    </script>
+
+
 
 <!-- ini script modal -->
 <div class="modal" id="mymodal" tabindex="-1" role="dialog">

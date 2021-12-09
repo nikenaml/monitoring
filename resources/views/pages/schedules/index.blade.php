@@ -8,6 +8,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+
+@if(Session::has('success'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+    </div>
+    @endif
+
+    @if(Session::has('info'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-info">
+            {{Session::get('info')}}
+        </div>
+    </div>
+    @endif
+
+    @if(Session::has('error'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+    </div>
+    @endif
+
     <div class="orders">
         <div class="row">
             <div class="col-12">

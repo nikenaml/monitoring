@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+// use Faker\Factory as Faker;
 
 class FalseAlarmRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class FalseAlarmRequest extends FormRequest
             'note_alert_schedule' => 'required',
             'sum_alert_email' => 'required|integer',
             'id_komentar' => 'required',
-            'sum_false_alarm' => 'required|integer'
+            'sum_false_alarm' => 'required|integer',
         ];
     }
 }
