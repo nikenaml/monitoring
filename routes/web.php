@@ -40,3 +40,9 @@ Route::resource('falsealarms',FalseAlarmController::class);
 
 Route::get('/falsealarm/pdf', [FalseAlarmController::class, 'createPDF']);
 Route::get('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
+
+Route::get('/schedule/pdf', [ScheduleController::class, 'createPDF']);
+Route::get('/schedule/search',[ScheduleController::class, 'search']);
+// Route::get('/search', [ScheduleController::class, 'search']);
+
+

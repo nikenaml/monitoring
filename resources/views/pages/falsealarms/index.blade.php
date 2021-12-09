@@ -68,7 +68,7 @@
                                         <th>Total Alert</th>
                                         <!-- <th>Id Komentar Salah Prediksi per Schedule</th> -->
                                         <th>Jumlah Komentar Salah Prediksi</th>
-                                        <th>Persentase Salah Prediksi</th>
+                                        <th>Persentase Salah Prediksi (%)</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

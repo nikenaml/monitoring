@@ -39,6 +39,21 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title"> Daftar Data Schedule</h4>
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <form action="/schedule/search" class="form-inline" method="GET">
+                                    <div class="form-group mr-sm-3 mb-2">
+                                        <input type="search" name="search" class="form-control" placeholder="Search by name">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-6">
+                                <a class="btn btn-primary float-right" href="{{ URL::to('/schedule/pdf') }}" target="_blank">Export to PDF</a>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
@@ -91,8 +106,8 @@
                                     @endforelse
                                 </tbody>
                             </table>
-
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>

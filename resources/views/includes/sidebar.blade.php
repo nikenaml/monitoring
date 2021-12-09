@@ -23,9 +23,9 @@
                         <a href="{{ route('schedules.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Data Schedule</a>
                     </li>
 
-                    <li class="menu-title">Summary</li><!-- /.menu-title -->
+                    <li class="menu-title">Panduan Pengisian</li><!-- /.menu-title -->
                     <li class="">
-                        <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Summary</a>
+                        <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Panduan</a>
                     </li>
                     <li class="">
 

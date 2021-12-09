@@ -14,7 +14,7 @@
 
 	<!-- <img src="{{URL::asset('/images/logo-sinarmas.png')}}"> -->
 	<!-- <img src="{{ public_path('logo-sinarmas.png') }}"> -->
-	<img src="{{ public_path('logo-sinarmas.png') }}" style="width: 200px; height: 50px">
+	<img src="{{ public_path('./images/logo-sinarmas.png') }}" style="width: 200px; height: 50px">
 
 	<center>
         <br>
@@ -34,7 +34,7 @@
                 <th>Total Alert</th>
                 <!-- <th>Id Komentar Salah Prediksi per Schedule</th> -->
                 <th>Jumlah Komentar Salah Prediksi</th>
-                <th>Persentase Salah Prediksi</th>
+                <th>Persentase Salah Prediksi (%)</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,7 +47,7 @@
                 <td>{{$fa->sum_alert_email}}</td>
                 <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
                 <td>{{$fa->sum_false_alarm}}</td>
-                <td>{{sprintf("%.3f", $fa->sum_false_alarm / $fa->sum_alert_email)}}</td>
+                <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td>
 			</tr>
 			@endforeach
 		</tbody>

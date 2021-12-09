@@ -25,37 +25,6 @@
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.8.2/dist/alpine.min.js"></script>
 
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
-
-    <script>
-        ClassicEditor
-                .create( document.querySelector( '.editor' ) )
-                .then( editor => {
-                        console.log( editor );
-                } )
-                .catch( error => {
-                        console.error( error );
-                } );
-    </script> -->
-
-    <!-- <script type="text/javascript" src="{{ asset('vendor/richtexteditor/richtexteditor/rte.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendor/richtexteditor/richtexteditor/plugins/all_plugins.js') }}"></script>
-
-    <script>
-	var editor1 = new RichTextEditor(".editor");
-	//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
-    </script> -->
-
-    <!-- <script src="https://cdn.tiny.cloud/1/mrijo5xd55uz5y0lorsfunbjov873qsgoaf6smpyo96mgtrw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-        selector: '.editor',  // change this value according to your HTML
-        plugins: 'lists',
-        toolbar: 'numlist bullist',
-        lists_indent_on_tab: false
-        });
-    </script> -->
-
     <script src="{{ asset('vendor/tinymce/js/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript">
         tinymce.init({
