@@ -40,7 +40,7 @@
                         <h4 class="box-title"> Daftar Data False Alarm</h4>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <form action="/falsealarm" class="form-inline" method="POST" enctype="multipart/form-data">
+                                <form action="" class="form-inline">
                                     <div class="form-group mr-sm-3 mb-2">
                                         {{csrf_field()}}
                                         <input type="date" name="from" class="form-control" id="from">s/d
@@ -154,7 +154,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            {{ $fas->links() }}
+                            {!! $fas->appends(Request::all())->links() !!}
                         </div>
                     </div>
                 </div>

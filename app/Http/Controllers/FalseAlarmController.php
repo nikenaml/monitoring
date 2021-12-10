@@ -30,28 +30,28 @@ class FalseAlarmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         // $fas = FalseAlarm::with('schedule')->get();
-        // $fas = FalseAlarm::all();
-        // return view('pages.falsealarms.index')->with([
-        //     'fas' => $fas
-        // ]);
+        $fas = FalseAlarm::all();
+        return view('pages.falsealarms.index')->with([
+            'fas' => $fas
+        ]);
 
         // untuk ambil data di db berdasarkan paginate halaman
         // $fas = FalseAlarm::latest()->paginate(2);
         // return view('pages.falsealarms.index', compact('fas'));
 
-        if($request->has('searchBydate')){
-            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get()->toArray()->paginate(2);
-        }
-        else {
-        // untuk ambil data di db berdasarkan paginate halaman
-        $fas = FalseAlarm::paginate(5);}
+        // if($request->has('searchBydate')){
+        //     $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(2);
+        // }
+        // else {
+        // // untuk ambil data di db berdasarkan paginate halaman
+        // $fas = FalseAlarm::paginate(5);}
 
-        return view('pages.falsealarms.index')->with([
-            'fas' => $fas
-        ]);
+        // return view('pages.falsealarms.index')->with([
+        //     'fas' => $fas
+        // ]);
     }
 
     /**
@@ -179,8 +179,13 @@ class FalseAlarmController extends Controller
 
     public function searchBydate(Request $request)
     {
-        $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get()->paginate(10);
-        return view('pages.falsealarms.index',compact('fas'));
+        $data = $request->all();
+        if ($request->has('from') && $request->has('to')) {
+            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(2);
+        } else {
+            $fas = FalseAlarm::paginate(2);
+        }
+        return view('pages.falsealarms.index',compact('fas','data'));
     }
 
     public function exportBydate(Request $req)

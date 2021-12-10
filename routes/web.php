@@ -40,7 +40,7 @@ Route::resource('falsealarms',FalseAlarmController::class);
 
 Route::get('/falsealarm/pdf', [FalseAlarmController::class, 'createPDF']);
 Route::get('/falsealarm/pdfdate', [FalseAlarmController::class, 'createPDFdate']);
-Route::post('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
+Route::get('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
 
 // Route::get('/falsealarm', [FalseAlarmController::class, 'exportBydate']);
 // Route::post('/falsealarm/PDF_report', [FalseAlarmController::class, 'exportBydate']);
