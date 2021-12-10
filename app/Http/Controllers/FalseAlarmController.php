@@ -7,8 +7,10 @@ use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
 // use Barryvdh\DomPDF\Facade as PDF;
 use PDF;
-// use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
+use DB;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class FalseAlarmController extends Controller
@@ -28,18 +30,28 @@ class FalseAlarmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $fas = FalseAlarm::with('schedule')->get();
-        $fas = FalseAlarm::all();
+        // $fas = FalseAlarm::all();
+        // return view('pages.falsealarms.index')->with([
+        //     'fas' => $fas
+        // ]);
+
         // untuk ambil data di db berdasarkan paginate halaman
-        // $fas = FalseAlarm::paginate(5);
+        // $fas = FalseAlarm::latest()->paginate(2);
+        // return view('pages.falsealarms.index', compact('fas'));
+
+        if($request->has('searchBydate')){
+            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get()->toArray()->paginate(2);
+        }
+        else {
+        // untuk ambil data di db berdasarkan paginate halaman
+        $fas = FalseAlarm::paginate(5);}
 
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
         ]);
-
-        // return view('pages.falsealarms.index', compact('fas'));
     }
 
     /**
@@ -167,7 +179,40 @@ class FalseAlarmController extends Controller
 
     public function searchBydate(Request $request)
     {
-        $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get();
+        $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get()->paginate(10);
         return view('pages.falsealarms.index',compact('fas'));
+    }
+
+    public function exportBydate(Request $req)
+    {
+        $method = $req->method();
+
+        if ($req->isMethod('post'))
+        {
+            $from = $req->input('from');
+            $to   = $req->input('to');
+            if ($req->has('search'))
+            {
+                // select search
+                $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get();
+                return view('pages.falsealarms.index',['fas' => $fas]);
+            }
+            elseif ($req->has('exportPDF'))
+            {
+                // select PDF
+                $PDFReport = DB::select("SELECT * FROM false_alarms WHERE tanggal_alert BETWEEN '$from' AND '$to'");
+                $pdf = PDF::loadView('PDF_report', ['PDFReport' => $PDFReport])->setPaper('a4', 'landscape');
+                return $pdf->download('PDF-report.pdf');
+            }
+        }
+
+        else
+        {
+            //select all
+            $fas = FalseAlarm::all();
+            return view('pages.falsealarms.index')->with([
+                'fas' => $fas
+            ]);
+        }
     }
 }

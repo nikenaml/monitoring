@@ -23,9 +23,9 @@ require __DIR__.'/auth.php';
 // });
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 Route::resource('schedules',ScheduleController::class);
 
@@ -39,7 +39,12 @@ Route::resource('falsealarms',FalseAlarmController::class);
 // Route::get('create-pdf-file', [PDFController::class, 'index'])
 
 Route::get('/falsealarm/pdf', [FalseAlarmController::class, 'createPDF']);
-Route::get('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
+Route::get('/falsealarm/pdfdate', [FalseAlarmController::class, 'createPDFdate']);
+Route::post('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
+
+// Route::get('/falsealarm', [FalseAlarmController::class, 'exportBydate']);
+// Route::post('/falsealarm/PDF_report', [FalseAlarmController::class, 'exportBydate']);
+
 
 Route::get('/schedule/pdf', [ScheduleController::class, 'createPDF']);
 Route::get('/schedule/search',[ScheduleController::class, 'search']);

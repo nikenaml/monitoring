@@ -28,15 +28,15 @@ class ScheduleController extends Controller
      */
     public function index(Request $request)
     {
-        $sch = Schedule::all();
+        // $sch = Schedule::all();
 
-        // if($request->has('search')){
-        //     $sch = Schedule::where('name','like',"%".$search."%")->paginate(10);
-        // }
-        // else {
-        // // untuk ambil data di db berdasarkan paginate halaman
-        // $sch = Schedule::paginate(10);
-        // }
+        if($request->has('search')){
+            $sch = Schedule::where('name','like',"%".$search."%")->get()->paginate(10);
+        }
+        else {
+        // untuk ambil data di db berdasarkan paginate halaman
+        $sch = Schedule::paginate(2);
+        }
 
         return view('pages.schedules.index')->with([
             'sch' => $sch
@@ -76,7 +76,12 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        // $fa = FalseAlarm::with('details.falsealarm')->findOrFail($id);
+        $s = Schedule::findOrFail($id);
+
+        return view('pages.schedules.show')->with([
+            's' => $s
+        ]);
     }
 
     /**

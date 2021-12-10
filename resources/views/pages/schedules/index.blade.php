@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-@if(Session::has('success'))
+    @if(Session::has('success'))
     <div x-data="{show: true}" x-init="setTimeout(() => show = false, 5000)" x-show="show">
         <div class="alert alert-success">
             {{Session::get('success')}}
@@ -78,6 +78,28 @@
                                             <td>{{strip_tags($s->description)}}</td>
 
                                             <td>
+                                                <a href="#mymodal"
+                                                    data-remote="{{ route('schedules.show', $s->id) }}"
+                                                    data-toggle="modal"
+                                                    data-target="#mymodal"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+
+                                                <div id="mymodal" class="modal fade text-center">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body"></div>
+                                                            <div class="modal-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <a href="{{route('schedules.edit', $s->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
@@ -106,9 +128,11 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                        {{ $sch->links() }}
                     </div>
                 </div>
             </div>
+            Showing 1 to 10 of {{$sch->total()}}
         </div>
     </div>
     <script type="text/javascript">

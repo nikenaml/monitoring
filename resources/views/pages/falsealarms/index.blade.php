@@ -40,19 +40,24 @@
                         <h4 class="box-title"> Daftar Data False Alarm</h4>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <form action="/falsealarm" class="form-inline" method="GET">
+                                <form action="/falsealarm" class="form-inline" method="POST" enctype="multipart/form-data">
                                     <div class="form-group mr-sm-3 mb-2">
                                         {{csrf_field()}}
-                                        <input type="date" name="from" class="form-control" value="{{date('Y-m-d')}}">
-                                        <input type="date" name="to" class="form-control ml-3" value="{{date('Y-m-d')}}">
-                                        <button type="submit" class="btn btn-primary ml-2">View</button>
+                                        <input type="date" name="from" class="form-control" id="from">s/d
+                                        <input type="date" name="to" class="form-control ml-3" id="to">
+                                        <button type="submit" class="btn btn-primary btn-sm ml-2">View</button>
+                                        <!-- <div class="col-md-6"> -->
+                                        <!-- <button type="submit" class="btn btn-primary btn-sm ml-2" name="search" >Search</button> -->
+                                        <button type="submit" class="btn btn-secondary btn-sm ml-2" name="exportPDF" >export PDF</button>
+                                        <!-- <button type="submit" class="btn btn-success btn-sm ml-2" name="exportExcel">export Excel</button> -->
+                                        <!-- </div> -->
+                                        <!-- <a class="btn btn-primary float-right mr-3" href="{{ URL::to('/falsealarm/pdfdate') }}" target="_blank">Export to PDF date</a> -->
                                     </div>
                                 </form>
                             </div>
 
                             <div class="col-md-6">
                                 <a class="btn btn-primary float-right" href="{{ URL::to('/falsealarm/pdf') }}" target="_blank">Export to PDF</a>
-
                             </div>
                         </div>
                     </div>
@@ -61,7 +66,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>No</th>
                                         <th>Tanggal Alert</th>
                                         <!-- <th>Waktu Schedule</th> -->
                                         <th>Note Jumlah Alert per schedule</th>
@@ -96,13 +101,13 @@
                                                 <div id="mymodal" class="modal fade text-center">
                                                     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
                                                         <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body"></div>
-                                                        <div class="modal-footer"></div>
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body"></div>
+                                                            <div class="modal-footer"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -149,12 +154,15 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            {{ $fas->links() }}
                         </div>
                     </div>
                 </div>
+                Showing 1 to 10 of {{$fas->total()}}
             </div>
         </div>
-    </div>
+        <!-- $fas->links('pagination::bootstrap-4') -->
+    <!-- </div> -->
 
     <script type="text/javascript">
   $("body").on("click",".remove-user",function(){
