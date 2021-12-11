@@ -60,6 +60,8 @@
             </div>
         </div>
 
+        <p>sedang dalam proses development</p>
+
         <!--  /Traffic -->
         <div class="clearfix"></div>
             <!-- Orders -->
@@ -113,8 +115,8 @@
             </div>
             <!-- /.orders -->
         <!-- /#add-category -->
-  </div>
-                <p>sedang dalam proses development</p>
+        </div>
+
                 <!-- /.orders -->
             <!-- /#add-category -->
     </div>

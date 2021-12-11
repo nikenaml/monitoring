@@ -27,9 +27,9 @@
                 <div class="form-group">
                     <label for="note_alert_schedule" class="form-control-label">Note Jumlah Alert per schedule</label>
                     <textarea name="note_alert_schedule" class="form-control @error('note_alert_schedule') is-invalid @enderror" rows=3>
-Pagi= {{old('note_alert_schedule')}}
-Siang= {{old('note_alert_schedule')}}
-Sore= {{old('note_alert_schedule')}}</textarea>
+Pagi={{old('note_alert_schedule')}}
+Siang={{old('note_alert_schedule')}}
+Sore={{old('note_alert_schedule')}}</textarea>
                     @error('note_alert_email') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 

@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
-// use Barryvdh\DomPDF\Facade as PDF;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
+// use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
-use DB;
-// use Illuminate\Support\Facades\DB;
+// use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class FalseAlarmController extends Controller
@@ -33,7 +33,7 @@ class FalseAlarmController extends Controller
     public function index()
     {
         // $fas = FalseAlarm::with('schedule')->get();
-        $fas = FalseAlarm::all();
+        $fas = FalseAlarm::latest()->paginate(2);
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
         ]);
@@ -165,7 +165,8 @@ class FalseAlarmController extends Controller
 
 
 
-    public function createPDF() {
+    public function createPDF()
+    {
         // retreive all records from db
         $fas = FalseAlarm::all();
 
@@ -188,21 +189,21 @@ class FalseAlarmController extends Controller
         return view('pages.falsealarms.index',compact('fas','data'));
     }
 
-    public function exportBydate(Request $req)
+    public function exportBydate(Request $request)
     {
-        $method = $req->method();
+        $method = $request->method();
 
-        if ($req->isMethod('post'))
+        if ($request->isMethod('post'))
         {
-            $from = $req->input('from');
-            $to   = $req->input('to');
-            if ($req->has('search'))
+            $from = $request->input('from');
+            $to   = $request->input('to');
+            if ($request->has('search'))
             {
                 // select search
                 $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get();
                 return view('pages.falsealarms.index',['fas' => $fas]);
             }
-            elseif ($req->has('exportPDF'))
+            elseif ($request->has('exportPDF'))
             {
                 // select PDF
                 $PDFReport = DB::select("SELECT * FROM false_alarms WHERE tanggal_alert BETWEEN '$from' AND '$to'");

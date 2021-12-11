@@ -48,7 +48,7 @@
                                         <button type="submit" class="btn btn-primary btn-sm ml-2">View</button>
                                         <!-- <div class="col-md-6"> -->
                                         <!-- <button type="submit" class="btn btn-primary btn-sm ml-2" name="search" >Search</button> -->
-                                        <button type="submit" class="btn btn-secondary btn-sm ml-2" name="exportPDF" >export PDF</button>
+                                        <!-- <button type="submit" class="btn btn-secondary btn-sm ml-2" name="exportPDF" >export PDF</button> -->
                                         <!-- <button type="submit" class="btn btn-success btn-sm ml-2" name="exportExcel">export Excel</button> -->
                                         <!-- </div> -->
                                         <!-- <a class="btn btn-primary float-right mr-3" href="{{ URL::to('/falsealarm/pdfdate') }}" target="_blank">Export to PDF date</a> -->
@@ -161,7 +161,6 @@
                 Showing 1 to 10 of {{$fas->total()}}
             </div>
         </div>
-        <!-- $fas->links('pagination::bootstrap-4') -->
     <!-- </div> -->
 
     <script type="text/javascript">
