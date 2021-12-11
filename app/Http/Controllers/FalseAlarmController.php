@@ -33,10 +33,11 @@ class FalseAlarmController extends Controller
     public function index()
     {
         // $fas = FalseAlarm::with('schedule')->get();
-        $fas = FalseAlarm::latest()->paginate(2);
+        $fas = FalseAlarm::latest()->paginate(5);
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
         ]);
+        // nama 'fas' boleh bebas, asalkan nanti di index.blade.php disesuaikan untuk forelse nya
 
         // untuk ambil data di db berdasarkan paginate halaman
         // $fas = FalseAlarm::latest()->paginate(2);
@@ -79,9 +80,17 @@ class FalseAlarmController extends Controller
     public function store(FalseAlarmRequest $request)
     {
         $data = $request->all();
-        // $data['slug'] = Str::slug($request->name);
+        $calculation = (intval($request->sum_false_alarm) / intval($request->sum_alert_email)) * 100;
 
-        FalseAlarm::create($data);
+        $flA = new FalseAlarm;
+        $flA->tanggal_alert = $request->tanggal_alert;
+        $flA->note_alert_schedule = $request->note_alert_schedule;
+        $flA->sum_alert_email = $request->sum_alert_email;
+        $flA->id_komentar = $request->id_komentar;
+        $flA->sum_false_alarm = $request->sum_false_alarm;
+        $flA->ratio_false = round($calculation, 2);
+        $flA->save();
+        //$result = FalseAlarm::create($data);
         return redirect()->route('falsealarms.index')->with('success','Data berhasil ditambahkan!');
     }
 
@@ -127,10 +136,15 @@ class FalseAlarmController extends Controller
     public function update(FalseAlarmRequest $request, $id)
     {
         $data = $request->all();
-
         $fa = FalseAlarm::findOrFail($id);
-        $fa->update($data);
-
+        $calculation = (intval($request->sum_false_alarm) / intval($request->sum_alert_email)) * 100;
+        $fa->tanggal_alert = $request->tanggal_alert;
+        $fa->note_alert_schedule = $request->note_alert_schedule;
+        $fa->sum_alert_email = $request->sum_alert_email;
+        $fa->id_komentar = $request->id_komentar;
+        $fa->sum_false_alarm = $request->sum_false_alarm;
+        $fa->ratio_false = round($calculation, 2);
+        $fa->save();
         return redirect()->route('falsealarms.index')->with('info','Data berhasil diperharui!');
     }
 
@@ -182,9 +196,9 @@ class FalseAlarmController extends Controller
     {
         $data = $request->all();
         if ($request->has('from') && $request->has('to')) {
-            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(2);
+            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(5);
         } else {
-            $fas = FalseAlarm::paginate(2);
+            $fas = FalseAlarm::paginate(5);
         }
         return view('pages.falsealarms.index',compact('fas','data'));
     }

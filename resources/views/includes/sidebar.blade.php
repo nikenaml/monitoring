@@ -15,13 +15,13 @@
                         <a href="{{ route('falsealarms.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Data False Alarm</a>
                     </li>
 
-                    <li class="menu-title">Schedule</li>
+                    <!-- <li class="menu-title">Schedule</li>
                     <li class="">
                         <a href="{{ route('schedules.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Data Schedule</a>
                     </li>
                     <li class="">
                         <a href="{{ route('schedules.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Data Schedule</a>
-                    </li>
+                    </li> -->
 
                     <li class="menu-title">Panduan Pengisian</li><!-- /.menu-title -->
                     <li class="">

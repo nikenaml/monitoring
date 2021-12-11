@@ -40,7 +40,7 @@
                         <h4 class="box-title"> Daftar Data False Alarm</h4>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <form action="" class="form-inline">
+                                <form action="/falsealarm" class="form-inline">
                                     <div class="form-group mr-sm-3 mb-2">
                                         {{csrf_field()}}
                                         <input type="date" name="from" class="form-control" id="from">s/d
@@ -87,7 +87,8 @@
                                             <td>{{$fa->sum_alert_email}}</td>
                                             <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
                                             <td>{{$fa->sum_false_alarm}}</td>
-                                            <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td>
+                                            <!-- <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td> -->
+                                            <td>{{$fa->ratio_false}}</td>
 
                                             <td>
                                                 <a href="#mymodal"
