@@ -95,7 +95,7 @@
                                             <td>{{strip_tags($item->note_alert_schedule)}}</td>
                                             <td>{{$item->sum_alert_email}}</td>
                                             <td>{{$item->sum_false_alarm}}</td>
-                                            <td>{{sprintf("%.2f", ($item->sum_false_alarm / $item->sum_alert_email)*100)}}</td>
+                                            <td>{{$item->ratio_false}}</td>
                                         </tr>
                                     @empty
                                         <tr>

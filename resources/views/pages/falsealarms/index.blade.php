@@ -155,9 +155,11 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            {!! $fas->appends(Request::all())->links() !!}
                         </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                            {!! $fas->appends(Request::all())->links() !!}
                 </div>
                 Showing 1 to 10 of {{$fas->total()}}
             </div>
