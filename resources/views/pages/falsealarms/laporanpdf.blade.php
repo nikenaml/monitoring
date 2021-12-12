@@ -41,7 +41,7 @@
 			@php $i=1 @endphp
 			@foreach($fas ?? '' as $fa)
 			<tr>
-                <td>{{ i++ }}</td>
+                <td>{{$fa->id}}</td>
                 <td>{{$fa->alert_date}}</td>
                 <td>{{strip_tags($fa->note_alert_schedule)}}</td>
                 <td>{{$fa->sum_alert_email}}</td>

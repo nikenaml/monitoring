@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleRequest;
 use Illuminate\Support\Str;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
+// use PDF;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -26,22 +29,22 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        // $sch = Schedule::all();
+    // public function index(Request $request)
+    // {
+    //     // $sch = Schedule::all();
 
-        if($request->has('search')){
-            $sch = Schedule::where('name','like',"%".$search."%")->get()->paginate(10);
-        }
-        else {
-        // untuk ambil data di db berdasarkan paginate halaman
-        $sch = Schedule::paginate(2);
-        }
+    //     if($request->has('search')){
+    //         $sch = Schedule::where('name','like',"%".$search."%")->get()->paginate(10);
+    //     }
+    //     else {
+    //     // untuk ambil data di db berdasarkan paginate halaman
+    //     $sch = Schedule::paginate(2);
+    //     }
 
-        return view('pages.schedules.index')->with([
-            'sch' => $sch
-        ]);
-    }
+    //     return view('pages.schedules.index')->with([
+    //         'sch' => $sch
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

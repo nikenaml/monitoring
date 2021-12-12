@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\FalseAlarmController;
+use App\Http\Controllers\RulesController;
+use App\Http\Controllers\ScheduleController;
 // use App\Http\Controllers\PDFController;
 
 require __DIR__.'/auth.php';
@@ -28,9 +29,14 @@ Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard')
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::resource('schedules',ScheduleController::class);
-
 Route::resource('falsealarms',FalseAlarmController::class);
+Route::get('/falsealarm/export_pdf', [FalseAlarmController::class, 'createPDF']);
+Route::get('/falsealarm/pdfdate', [FalseAlarmController::class, 'createPDFdate']);
+Route::get('/falsealarm/filterdate', [FalseAlarmController::class, 'searchBydate']);
+Route::get('/falsealarm/export_excel', [FalseAlarmController::class, 'createExcel']);
+
+Route::resource('rules',RulesController::class);
+
 // Route::get('/falsealarm/cetak_pdf', FalseAlarmController::class,'cetak_pdf');
 // Route::get('falsealarms/cetak_pdf', [FalseAlarmController::class, 'cetak_pdf'])->name('falsealarms.cetak_pdf');
 
@@ -39,15 +45,11 @@ Route::resource('falsealarms',FalseAlarmController::class);
 // Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
 // Route::get('create-pdf-file', [PDFController::class, 'index'])
 
-Route::get('/falsealarm/export_pdf', [FalseAlarmController::class, 'createPDF']);
-Route::get('/falsealarm/pdfdate', [FalseAlarmController::class, 'createPDFdate']);
-Route::get('/falsealarm/filterdate', [FalseAlarmController::class, 'searchBydate']);
-Route::get('/falsealarm/export_excel', [FalseAlarmController::class, 'createExcel']);
-
 // Route::get('/falsealarm', [FalseAlarmController::class, 'exportBydate']);
 // Route::post('/falsealarm/PDF_report', [FalseAlarmController::class, 'exportBydate']);
 
 
+Route::resource('schedules',ScheduleController::class);
 Route::get('/schedule/pdf', [ScheduleController::class, 'createPDF']);
 Route::get('/schedule/search',[ScheduleController::class, 'search']);
 // Route::get('/search', [ScheduleController::class, 'search']);

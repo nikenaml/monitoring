@@ -50,7 +50,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span>{{$avg_ratio}}</span> %</div>
+                                    <div class="stat-text"><span>{{sprintf("%.2f", $avg_ratio)}}</span> %</div>
                                     <div class="stat-heading">Average False Alarm</div>
                                 </div>
                             </div>
