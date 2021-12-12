@@ -40,7 +40,7 @@
                         <h4 class="box-title"> Daftar Data False Alarm</h4>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <form action="/falsealarm" class="form-inline">
+                                <form action="/falsealarm/filterdate" class="form-inline">
                                     <div class="form-group mr-sm-3 mb-2">
                                         {{csrf_field()}}
                                         <input type="date" name="from" class="form-control" id="from">s/d
@@ -57,7 +57,8 @@
                             </div>
 
                             <div class="col-md-6">
-                                <a class="btn btn-primary float-right" href="{{ URL::to('/falsealarm/pdf') }}" target="_blank">Export to PDF</a>
+                                <a class="btn btn-primary float-right ml-2" href="{{ URL::to('/falsealarm/export_pdf') }}" target="_blank">Export to PDF</a>
+                                <a class="btn btn-success float-right" href="{{ URL::to('/falsealarm/export_excel') }}" target="_blank">Export to Excel</a>
                             </div>
                         </div>
                     </div>
@@ -82,10 +83,10 @@
                                     @forelse ($fas ?? '' as $fa)
                                         <tr>
                                             <td>{{$fa->id}}</td>
-                                            <td>{{$fa->tanggal_alert}}</td>
+                                            <td>{{$fa->alert_date}}</td>
                                             <td>{{strip_tags($fa->note_alert_schedule)}}</td>
                                             <td>{{$fa->sum_alert_email}}</td>
-                                            <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
+                                            <!-- <td>{{strip_tags($fa->id_comment)}}</td> -->
                                             <td>{{$fa->sum_false_alarm}}</td>
                                             <!-- <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td> -->
                                             <td>{{$fa->ratio_false}}</td>
@@ -127,7 +128,7 @@
                                                     </div>
                                                 </div> -->
 
-                                                <!-- data-title="Detail waktu {{ $fa->tanggal_alert}}" -->
+                                                <!-- data-title="Detail waktu {{ $fa->alert_date}}" -->
                                                 <a href="{{route('falsealarms.edit', $fa->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>

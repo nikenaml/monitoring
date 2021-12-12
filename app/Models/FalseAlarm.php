@@ -11,7 +11,7 @@ class FalseAlarm extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tanggal_alert', 'note_alert_schedule', 'sum_alert_email', 'id_komentar', 'sum_false_alarm'
+        'alert_date', 'note_alert_schedule', 'sum_alert_email', 'id_comment', 'sum_false_alarm'
     ];
     // 'schedules_id',
 

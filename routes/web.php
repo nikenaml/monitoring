@@ -39,9 +39,10 @@ Route::resource('falsealarms',FalseAlarmController::class);
 // Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
 // Route::get('create-pdf-file', [PDFController::class, 'index'])
 
-Route::get('/falsealarm/pdf', [FalseAlarmController::class, 'createPDF']);
+Route::get('/falsealarm/export_pdf', [FalseAlarmController::class, 'createPDF']);
 Route::get('/falsealarm/pdfdate', [FalseAlarmController::class, 'createPDFdate']);
-Route::get('/falsealarm', [FalseAlarmController::class, 'searchBydate']);
+Route::get('/falsealarm/filterdate', [FalseAlarmController::class, 'searchBydate']);
+Route::get('/falsealarm/export_excel', [FalseAlarmController::class, 'createExcel']);
 
 // Route::get('/falsealarm', [FalseAlarmController::class, 'exportBydate']);
 // Route::post('/falsealarm/PDF_report', [FalseAlarmController::class, 'exportBydate']);

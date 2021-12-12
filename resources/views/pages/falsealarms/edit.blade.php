@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <strong>Update Data False Alarm</strong>
-            <small>{{$fa->tanggal_alert}}</small>
+            <small>{{$fa->alert_date}}</small>
 
         </div>
 
@@ -13,15 +13,16 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group">
-                    <label for="tanggal_alert" class="form-control-label">Tanggal Alert Email</label>
+                    <label for="alert_date" class="form-control-label">Tanggal Alert Email</label>
                     <!-- value kenapa old? agar jika error inputannya ga hilang, jadi tetap ada isinya, ga isi dari ulang, makanya ada old nya, mengambil isian yang sebelumnya -->
-                    <input type="date" name="tanggal_alert" value="{{old('tanggal_alert')?old('tanggal_alert') : $fa->tanggal_alert}}" class="form-control @error('tanggal_alert') is-invalid @enderror"/>
-                    @error('tanggal_alert') <div class="text-muted">{{$message}}</div> @enderror
+                    <input type="date" name="alert_date" value="{{old('alert_date')?old('alert_date') : $fa->alert_date}}" class="form-control @error('alert_date') is-invalid @enderror"/>
+                    @error('alert_date') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="note_alert_schedule" class="form-control-label">Note Jumlah Alert per schedule</label>
-                    <input type="text" name="note_alert_schedule" value="{{old('note_alert_schedule')?old('note_alert_schedule') : $fa->note_alert_schedule}}" class="form-control @error('note_alert_schedule') is-invalid @enderror"/>
+                    <textarea name="note_alert_schedule" class="form-control @error('note_alert_schedule') is-invalid @enderror", rows=3>
+{{old('note_alert_schedule')?old('note_alert_schedule') : $fa->note_alert_schedule}}</textarea>
                     @error('note_alert_email') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 
@@ -32,9 +33,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_komentar" class="form-control-label">Id Komentar Salah Prediksi per Schedule</label>
-                    <textarea name="id_komentar" class="editor form-control @error('id_komentar') is-invalid @enderror">{{old('id_komentar')?old('id_komentar') : $fa->id_komentar}}</textarea>
-                    @error('id_komentar') <div class="text-muted">{{$message}}</div> @enderror
+                    <label for="id_comment" class="form-control-label">Id Komentar Salah Prediksi per Schedule</label>
+                    <textarea name="id_comment" class="editor form-control @error('id_comment') is-invalid @enderror">{{old('id_comment')?old('id_comment') : $fa->id_comment}}</textarea>
+                    @error('id_comment') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 
                 <div class="form-group">

@@ -42,7 +42,7 @@
 			@foreach($PDFReport as $PDFReports)
 			<tr>
                 <td>{{$PDFReports->id}}</td>
-                <td>{{$PDFReports->tanggal_alert}}</td>
+                <td>{{$PDFReports->alert_date}}</td>
                 <td>{{strip_tags($PDFReports->note_alert_schedule)}}</td>
                 <td>{{$PDFReports->sum_alert_email}}</td>
                 <td>{{$PDFReports->sum_false_alarm}}</td>

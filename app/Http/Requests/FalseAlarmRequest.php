@@ -25,11 +25,11 @@ class FalseAlarmRequest extends FormRequest
     public function rules()
     {
         return [
-            'tanggal_alert' => 'required',
+            'alert_date' => 'required',
             // 'schedules_id' => 'required|integer|exists:schedules,id',
             'note_alert_schedule' => 'required',
             'sum_alert_email' => 'required|integer',
-            'id_komentar' => 'required',
+            'id_comment' => 'required',
             'sum_false_alarm' => 'required|integer',
         ];
     }

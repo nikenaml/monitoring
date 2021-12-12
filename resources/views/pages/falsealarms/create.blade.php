@@ -4,24 +4,21 @@
     <div class="card">
         <div class="card-header">
             <strong>Tambah Data False Alarm</strong>
+            <!-- <p></p>
+            <p>Sebelum melakukan pengisian form, diharapkan terlebih dahulu untuk memahami dengan seksama mengenai tata cara pengisiannya. </p>
             <p></p>
-            <p>Pengisian form ini hanya dibatasi sekali saja setiap ada kesalahan/sehari sekali. Jika terdapat beberapa kesalahan pada schedule yang berbeda seperti di pagi dan siang hari, atau di ketiga schedule semuanya terdapat prediksi kesalahan, harap melakukan update/edit data dan jangan klik bagian menambah data.</p>
-            <p></p>
-            <p>Form ini difokuskan untuk pengisian prediksi kesalahan berdasarkan tanggal alert bukan berdasarkan pembagian waktu schedule nya.</p>
-            <p></p>
-            <p>Panduan pengisian form ini terdapat di bagian "Panduan Pengisian". Jika ada kendala maupun pertanyaan, harap langsung menghubungi Tim Social Listening.</p>
-
+            <p>Panduan pengisian form ini terdapat di bagian "Panduan Pengisian-Lihat Panduan". Jika ada kendala maupun pertanyaan, harap langsung menghubungi Tim Social Listening.</p> -->
         </div>
 
         <div class="card-body card-block">
             <form action="{{route('falsealarms.store')}}" method="POST">
             @csrf
                 <div class="form-group">
-                    <label for="tanggal_alert" class="form-control-label">Tanggal Alert Email</label>
+                    <label for="alert_date" class="form-control-label">Tanggal Alert Email</label>
                     <!-- value kenapa old? agar jika error inputannya ga hilang, jadi tetap ada isinya, ga isi dari ulang, makanya ada old nya, mengambil isian yang sebelumnya -->
-                    <input type="date" name="tanggal_alert" value="{{old('tanggal_alert')}}" class="form-control @error('tanggal_alert') is-invalid @enderror"/>
+                    <input type="date" name="alert_date" value="{{old('alert_date')}}" class="form-control @error('alert_date') is-invalid @enderror"/>
                     <!-- datetime-local -->
-                    @error('tanggal_alert') <div class="text-muted">{{$message}}</div> @enderror
+                    @error('alert_date') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 
                 <div class="form-group">
@@ -40,9 +37,9 @@ Sore={{old('note_alert_schedule')}}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="id_komentar" class="form-control-label">Id Komentar Salah Prediksi per Schedule</label>
-                    <textarea name="id_komentar" class="editor form-control @error('id_komentar') is-invalid @enderror">{{old('id_komentar')}}</textarea>
-                    @error('id_komentar') <div class="text-muted">{{$message}}</div> @enderror
+                    <label for="id_comment" class="form-control-label">Id Komentar Salah Prediksi per Schedule</label>
+                    <textarea name="id_comment" class="editor form-control @error('id_comment') is-invalid @enderror">{{old('id_comment')}}</textarea>
+                    @error('id_comment') <div class="text-muted">{{$message}}</div> @enderror
                 </div>
 
                 <div class="form-group">

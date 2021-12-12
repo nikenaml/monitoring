@@ -7,7 +7,8 @@ use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
 use Barryvdh\DomPDF\Facade as PDF;
 // use PDF;
-use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use App\Exports\FalseAlarmsExport;
 
 // use DB;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,7 @@ class FalseAlarmController extends Controller
         // return view('pages.falsealarms.index', compact('fas'));
 
         // if($request->has('searchBydate')){
-        //     $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(2);
+        //     $fas = FalseAlarm::where('alert_date','>=',$request->from)->where('alert_date','<=',$request->to)->paginate(2);
         // }
         // else {
         // // untuk ambil data di db berdasarkan paginate halaman
@@ -83,10 +84,10 @@ class FalseAlarmController extends Controller
         $calculation = (intval($request->sum_false_alarm) / intval($request->sum_alert_email)) * 100;
 
         $flA = new FalseAlarm;
-        $flA->tanggal_alert = $request->tanggal_alert;
+        $flA->alert_date = $request->alert_date;
         $flA->note_alert_schedule = $request->note_alert_schedule;
         $flA->sum_alert_email = $request->sum_alert_email;
-        $flA->id_komentar = $request->id_komentar;
+        $flA->id_comment = $request->id_comment;
         $flA->sum_false_alarm = $request->sum_false_alarm;
         $flA->ratio_false = round($calculation, 2);
         $flA->save();
@@ -138,14 +139,14 @@ class FalseAlarmController extends Controller
         $data = $request->all();
         $fa = FalseAlarm::findOrFail($id);
         $calculation = (intval($request->sum_false_alarm) / intval($request->sum_alert_email)) * 100;
-        $fa->tanggal_alert = $request->tanggal_alert;
+        $fa->alert_date = $request->alert_date;
         $fa->note_alert_schedule = $request->note_alert_schedule;
         $fa->sum_alert_email = $request->sum_alert_email;
-        $fa->id_komentar = $request->id_komentar;
+        $fa->id_comment = $request->id_comment;
         $fa->sum_false_alarm = $request->sum_false_alarm;
         $fa->ratio_false = round($calculation, 2);
         $fa->save();
-        return redirect()->route('falsealarms.index')->with('info','Data berhasil diperharui!');
+        return redirect()->route('falsealarms.index')->with('info','Data berhasil diperbaharui!');
     }
 
     /**
@@ -177,8 +178,6 @@ class FalseAlarmController extends Controller
     // 	return $pdf->download('laporan-pegawai-pdf');
     // }
 
-
-
     public function createPDF()
     {
         // retreive all records from db
@@ -196,7 +195,7 @@ class FalseAlarmController extends Controller
     {
         $data = $request->all();
         if ($request->has('from') && $request->has('to')) {
-            $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->paginate(5);
+            $fas = FalseAlarm::where('alert_date','>=',$request->from)->where('alert_date','<=',$request->to)->paginate(5);
         } else {
             $fas = FalseAlarm::paginate(5);
         }
@@ -214,13 +213,13 @@ class FalseAlarmController extends Controller
             if ($request->has('search'))
             {
                 // select search
-                $fas = FalseAlarm::where('tanggal_alert','>=',$request->from)->where('tanggal_alert','<=',$request->to)->get();
+                $fas = FalseAlarm::where('alert_date','>=',$request->from)->where('alert_date','<=',$request->to)->get();
                 return view('pages.falsealarms.index',['fas' => $fas]);
             }
             elseif ($request->has('exportPDF'))
             {
                 // select PDF
-                $PDFReport = DB::select("SELECT * FROM false_alarms WHERE tanggal_alert BETWEEN '$from' AND '$to'");
+                $PDFReport = DB::select("SELECT * FROM false_alarms WHERE alert_date BETWEEN '$from' AND '$to'");
                 $pdf = PDF::loadView('PDF_report', ['PDFReport' => $PDFReport])->setPaper('a4', 'landscape');
                 return $pdf->download('PDF-report.pdf');
             }
@@ -235,4 +234,37 @@ class FalseAlarmController extends Controller
             ]);
         }
     }
+
+    // public function createExcel()
+    // {
+    // $fa_data = FalseAlarm::all()->toArray();
+    // // $customer_data = DB::table('tbl_customer')->get()->toArray();
+    // $fa_array[] = array('No', 'Tanggal Alert', 'Note Jumlah Alert per schedule', 'Total Alert', 'Id Komentar Salah Prediksi', 'Jumlah Komentar Salah Prediksi', 'Persentase Salah Prediksi', 'created_at', 'updated_at');
+    // foreach($fa_data as $fa)
+    //  { $fa_array[] = array(
+    //    'No'  => $fa->id,
+    //    'Tanggal Alert' => $fa->alert_date,
+    //    'Note Jumlah Alert per schedule' => $fa->note_alert_schedule,
+    //    'Total Alert'  => $fa->sum_alert_email,
+    //    'Id Komentar Salah Prediksi' => $fa->id_comment,
+    //    'Jumlah Komentar Salah Prediksi' => $fa->sum_false_alarm,
+    //    'Persentase Salah Prediksi' => $fa->ratio_false,
+    //    'created_at' => $fa->created_at,
+    //    'updated_at' => $fa->updated_at
+
+    //   );
+    //  }
+
+    // Excel::create('False Alarm Data', function($excel) use ($fa_array)
+    // {
+    // $excel->setTitle('False Alarm Data');
+    // $excel->sheet('False Alarm Data', function($sheet) use ($fa_array){
+    // $sheet->fromArray($fa_array, null, 'A1', false, false);});
+    // })->download('xlsx');
+    // }
+
+    public function createExcel(){
+        return Excel::download(new FalseAlarmsExport, 'Rekap Data False Alarms.xlsx');
+    }
+
 }

@@ -41,11 +41,11 @@
 			@php $i=1 @endphp
 			@foreach($fas ?? '' as $fa)
 			<tr>
-                <td>{{$fa->id}}</td>
-                <td>{{$fa->tanggal_alert}}</td>
+                <td>{{ i++ }}</td>
+                <td>{{$fa->alert_date}}</td>
                 <td>{{strip_tags($fa->note_alert_schedule)}}</td>
                 <td>{{$fa->sum_alert_email}}</td>
-                <!-- <td>{{strip_tags($fa->id_komentar)}}</td> -->
+                <!-- <td>{{strip_tags($fa->id_comment)}}</td> -->
                 <td>{{$fa->sum_false_alarm}}</td>
                 <td>{{sprintf("%.2f", ($fa->sum_false_alarm / $fa->sum_alert_email)*100)}}</td>
 			</tr>

@@ -37,7 +37,7 @@
 			@php $i=1 @endphp
 			@foreach($sch ?? '' as $s)
 			<tr>
-                <td>{{$s->id}}</td>
+                <td>{{ i++ }}</td>
                 <td>{{$s->name}}</td>
                 <td>{{$s->type}}</td>
                 <td>{{strip_tags($s->description)}}</td>

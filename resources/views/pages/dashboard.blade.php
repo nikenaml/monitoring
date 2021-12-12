@@ -50,7 +50,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span>{{sprintf("%.2f", ($sum_false/$sum_alert)*100)}}</span> %</div>
+                                    <div class="stat-text"><span>{{$avg_ratio}}</span> %</div>
                                     <div class="stat-heading">Average False Alarm</div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <p>sedang dalam proses development</p>
+        <!-- <p>sedang dalam proses development</p> -->
 
         <!--  /Traffic -->
         <div class="clearfix"></div>
@@ -91,7 +91,7 @@
                                     @forelse ($items ?? '' as $item)
                                         <tr>
                                             <td>{{$item->id}}</td>
-                                            <td>{{$item->tanggal_alert}}</td>
+                                            <td>{{$item->alert_date}}</td>
                                             <td>{{strip_tags($item->note_alert_schedule)}}</td>
                                             <td>{{$item->sum_alert_email}}</td>
                                             <td>{{$item->sum_false_alarm}}</td>
