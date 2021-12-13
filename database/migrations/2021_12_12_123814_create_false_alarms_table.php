@@ -21,7 +21,7 @@ class CreateFalseAlarmsTable extends Migration
             $table->integer('sum_alert_email');
             $table->longText('id_comment');
             $table->integer('sum_false_alarm');
-            $table->double('ratio_false')->default(0);
+            $table->double('ratio_false');
 
             $table->softDeletes();
             $table->timestamps();
