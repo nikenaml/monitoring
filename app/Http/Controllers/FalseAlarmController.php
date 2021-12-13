@@ -263,8 +263,12 @@ class FalseAlarmController extends Controller
     // })->download('xlsx');
     // }
 
+    // public function createExcel(Request $request){
+    //     dd($request->all());
+    //     return Excel::download(new FalseAlarmsExport, 'Rekap Data False Alarms.xlsx');
+    // }
+
     public function createExcel(){
         return Excel::download(new FalseAlarmsExport, 'Rekap Data False Alarms.xlsx');
     }
-
 }
