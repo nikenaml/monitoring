@@ -60,7 +60,7 @@
                                 <!-- <a class="btn btn-primary float-right ml-2" href="{{ URL::to('/falsealarm/export_pdf') }}" target="_blank">Export to PDF</a> -->
                                 <!-- <a class="btn btn-success float-right" href="{{ URL::to('/falsealarm/export_excel') }}" target="_blank">Export to Excel</a> -->
                                 <button class="btn btn-primary float-right ml-2" onclick="exportPDF()" id="exportpdf">Export to PDF</button>
-                                <a class="btn btn-success float-right" onclick="exportExcel()">Export to Excel</a>
+                                <button class="btn btn-success float-right text-white" onclick="exportExcel()">Export to Excel</button>
                             </div>
                         </div>
                     </div>
