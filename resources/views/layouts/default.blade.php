@@ -9,6 +9,7 @@
     <title>Monitoring Evaluasi Model Social Listening Tools</title>
     <meta name="description" content="Monitoring Social Listening Tools">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- style -->
     @stack('before-style')

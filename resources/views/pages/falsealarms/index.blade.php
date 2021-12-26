@@ -2,10 +2,9 @@
 
 @section('content')
 <head>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
     @if(Session::has('success'))
@@ -57,8 +56,10 @@
                             </div>
 
                             <div class="col-md-6">
-                                <a class="btn btn-primary float-right ml-2" href="{{ URL::to('/falsealarm/export_pdf') }}" target="_blank">Export to PDF</a>
-                                <a class="btn btn-success float-right" href="{{ URL::to('/falsealarm/export_excel') }}" target="_blank">Export to Excel</a>
+                                <!-- <a class="btn btn-primary float-right ml-2" href="{{ URL::to('/falsealarm/export_pdf') }}" target="_blank">Export to PDF</a> -->
+                                <!-- <a class="btn btn-success float-right" href="{{ URL::to('/falsealarm/export_excel') }}" target="_blank">Export to Excel</a> -->
+                                <button class="btn btn-primary float-right ml-2" onclick="exportPDF()" id="exportpdf">Export to PDF</button>
+                                <a class="btn btn-success float-right" onclick="exportExcel()">Export to Excel</a>
                             </div>
                         </div>
                     </div>
@@ -167,32 +168,31 @@
         </div>
     <!-- </div> -->
 
-    <script type="text/javascript">
-  $("body").on("click",".remove-user",function(){
-    var current_object = $(this);
-    swal({
-        title: "Are You Sure For Delete?",
-        text: "Data yang terhapus tidak dapat dikembalikan akan terhapus secara permanent!",
-        type: "error",
-        showCancelButton: true,
-        dangerMode: true,
-        cancelButtonClass: '#DD6B55',
-        confirmButtonColor: '#dc3545',
-        confirmButtonText: 'Delete!',
-    },function (result) {
-        if (result) {
-            var action = current_object.attr('data-action');
-            var token = jQuery('meta[name="csrf-token"]').attr('content');
-            var id = current_object.attr('data-id');
-
-            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
-            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
-            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
-            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
-            $('body').find('.remove-form').submit();
+    <script>
+        function exportPDF() {
+            const from = $('#from').val();
+            const to = $('#to').val();
+            window.open(`/falsealarm/export_pdf?from=${from}&to=${to}`,'_blank');
+            // $.ajax({
+            //     async: false,
+            //     type: 'get',
+            //     url: "{{url('falsealarm/export_pdf')}}",
+            //     data: {
+            //         _token: '{{csrf_token()}}',
+            //         from: from,
+            //         to: to
+            //     },
+            //     success: function(res) {
+            //         window.open(downloadUrl,'_blank');
+            //         console.log('response', res)
+            //     }
+            // })
         }
-    });
-});
+        function exportExcel() {
+            const from = $('#from').val();
+            const to = $('#to').val();
+            window.open(`/falsealarm/export_excel?from=${from}&to=${to}`,'_blank');
+        }
 </script>
 </body>
 @endsection

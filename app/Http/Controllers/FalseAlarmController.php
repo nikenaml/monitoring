@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Http\Requests\FalseAlarmRequest;
 use App\Models\FalseAlarm;
+
+// VENDOR
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
+
 // use PDF;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 use App\Exports\FalseAlarmsExport;
@@ -178,10 +182,18 @@ class FalseAlarmController extends Controller
     // 	return $pdf->download('laporan-pegawai-pdf');
     // }
 
-    public function createPDF()
+    public function createPDF(Request $request)
     {
-        // retreive all records from db
-        $fas = FalseAlarm::all();
+        $from = $request->from;
+        $to = $request->to;
+        if (isset($from) && isset($to)) {
+            $from = Carbon::parse($from)->toDateString();
+            $to = Carbon::parse($to)->toDateString();
+            $fas = FalseAlarm::whereDate('alert_date', '>=', $from)->whereDate('alert_date', '<=', $to)->get();
+        } else {
+            // retreive all records from db
+            $fas = FalseAlarm::all();
+        }
 
         // share data to view
         view()->share('fas',$fas);
@@ -268,7 +280,16 @@ class FalseAlarmController extends Controller
     //     return Excel::download(new FalseAlarmsExport, 'Rekap Data False Alarms.xlsx');
     // }
 
-    public function createExcel(){
-        return Excel::download(new FalseAlarmsExport, 'Rekap Data False Alarms.xlsx');
+    public function createExcel(Request $request){
+        $from = $request->from;
+        $to = $request->to;
+        if (isset($from) && isset($to)) {
+            $from = Carbon::parse($from)->toDateString();
+            $to = Carbon::parse($to)->toDateString();
+            return Excel::download(new FalseAlarmsExport($from, $to), 'Rekap Data False Alarms.xlsx');
+        } else {
+            // retreive all records from db
+            return Excel::download(new FalseAlarmsExport('',''), 'Rekap Data False Alarms.xlsx');
+        }
     }
 }
