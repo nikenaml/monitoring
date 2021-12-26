@@ -9,6 +9,7 @@
     <title>Monitoring Evaluasi Model Social Listening Tools</title>
     <meta name="description" content="Monitoring Social Listening Tools">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- style -->
