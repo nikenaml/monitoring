@@ -49,7 +49,7 @@
         $(document).ready(function(){
             // console.log("asda")
 
-            $('#mymodal').on('shown.bs.modal', function(e){
+            $('#mymodal').on('show.bs.modal', function(e){
                 var button = $(e.relatedTarget);
                 var modal = $(this);
 
