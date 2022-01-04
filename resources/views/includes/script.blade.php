@@ -48,7 +48,8 @@
     <script>
         $(document).ready(function(){
             // console.log("asda")
-            $('#mymodal').on('show.bs.modal', function(e){
+
+            $('#mymodal').on('shown.bs.modal', function(e){
                 var button = $(e.relatedTarget);
                 var modal = $(this);
 
@@ -57,12 +58,13 @@
                 modal.find('.modal-title').html(button.data("title"));
             });
         });
+
     </script>
 
 
 
 <!-- ini script modal -->
-<div class="modal" id="mymodal" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="mymodal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,4 +80,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
