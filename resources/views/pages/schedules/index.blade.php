@@ -85,7 +85,7 @@
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
-                                                <div id="mymodal" class="modal fade text-center">
+                                                <!-- <div id="mymodal" class="modal fade text-center">
                                                     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -97,7 +97,7 @@
                                                             <div class="modal-footer"></div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <a href="{{route('schedules.edit', $s->id)}}" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>

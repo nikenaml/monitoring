@@ -5,7 +5,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="{{route ('dashboard')}}"><i class
-                            ="menu-icon fa fa-laptop"></i>Dashboard </a>
+                            ="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Data</li><!-- /.menu-title -->
                     <li class="">

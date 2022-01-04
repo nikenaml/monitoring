@@ -64,7 +64,7 @@
 
 
 <!-- ini script modal -->
-<!-- <div class="modal" id="mymodal" tabindex="-1" role="dialog">
+<div class="modal" id="mymodal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,8 +76,8 @@
             </div>
 
             <div class="modal-body">
-                <i class="fa fa-spinner fa-spin"></i>
+                <!-- <i class="fa fa-spinner fa-spin"></i> -->
             </div>
         </div>
     </div>
-</div> -->
+</div>
