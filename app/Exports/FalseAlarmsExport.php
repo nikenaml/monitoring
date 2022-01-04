@@ -35,7 +35,7 @@ class FalseAlarmsExport implements FromCollection, WithHeadings
             "Tanggal Alert",
             "Note Jumlah Alert per schedule",
             "Total Alert All Schedule",
-            "Id Komentar Salah Prediksi",
+            "URL Komentar Salah Prediksi",
             "Jumlah Komentar Salah Prediksi",
             "Persentase Salah Prediksi (%)",
             "deleted_at",
