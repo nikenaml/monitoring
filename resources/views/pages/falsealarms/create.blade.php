@@ -37,7 +37,7 @@ Sore={{old('note_alert_schedule')}}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="id_comment" class="form-control-label">Id Komentar Salah Prediksi per Schedule</label>
+                    <label for="id_comment" class="form-control-label">URL Komentar Salah Prediksi per Schedule</label>
                     <textarea name="id_comment" class="editor form-control @error('id_comment') is-invalid @enderror">{{old('id_comment')}}</textarea>
                     @error('id_comment') <div class="text-muted">{{$message}}</div> @enderror
                 </div>

@@ -21,7 +21,7 @@
         </tr>
 
         <tr>
-            <th class="font-weight-bold">Id Komentar Salah Prediksi per Schedule</th>
+            <th class="font-weight-bold">URL Komentar Salah Prediksi per Schedule</th>
             <td class="text-left">{{ strip_tags($fa->id_comment) }}</td>
         </tr>
 
