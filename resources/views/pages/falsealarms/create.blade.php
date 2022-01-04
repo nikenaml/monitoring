@@ -4,10 +4,6 @@
     <div class="card">
         <div class="card-header">
             <strong>Tambah Data False Alarm</strong>
-            <!-- <p></p>
-            <p>Sebelum melakukan pengisian form, diharapkan terlebih dahulu untuk memahami dengan seksama mengenai tata cara pengisiannya. </p>
-            <p></p>
-            <p>Panduan pengisian form ini terdapat di bagian "Panduan Penggunaan-Lihat Panduan". Jika mengalami kendala maupun pertanyaan, harap langsung menghubungi Tim Social Listening.</p> -->
         </div>
 
         <div class="card-body card-block">
