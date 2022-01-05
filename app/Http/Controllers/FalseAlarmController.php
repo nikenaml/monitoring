@@ -38,7 +38,7 @@ class FalseAlarmController extends Controller
     public function index()
     {
         // $fas = FalseAlarm::with('schedule')->get();
-        $fas = FalseAlarm::latest()->paginate(5);
+        $fas = FalseAlarm::latest()->paginate(10);
         return view('pages.falsealarms.index')->with([
             'fas' => $fas
         ]);
@@ -207,9 +207,9 @@ class FalseAlarmController extends Controller
     {
         $data = $request->all();
         if ($request->has('from') && $request->has('to')) {
-            $fas = FalseAlarm::where('alert_date','>=',$request->from)->where('alert_date','<=',$request->to)->paginate(5);
+            $fas = FalseAlarm::where('alert_date','>=',$request->from)->where('alert_date','<=',$request->to)->paginate(10);
         } else {
-            $fas = FalseAlarm::paginate(5);
+            $fas = FalseAlarm::paginate(10);
         }
         return view('pages.falsealarms.index',compact('fas','data'));
     }
