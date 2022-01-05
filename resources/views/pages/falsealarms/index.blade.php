@@ -143,7 +143,7 @@
 
                                                                     <tr>
                                                                         <th class="font-weight-bold">Persentase Salah Prediksi</th>
-                                                                        <td class="text-left">{{sprintf("%.3f", $fa->sum_false_alarm / $fa->sum_alert_email)}}</td>
+                                                                        <td class="text-left">{{$fa->ratio_false}}</td>
                                                                     </tr>
                                                                 </table>
                                                             </div>
