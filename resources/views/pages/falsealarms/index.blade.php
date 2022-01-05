@@ -103,9 +103,9 @@
                                                 </a>
 
                                                 <div id="mymodal" class="modal fade text-center">
-                                                    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document" style="max-width: 50%;">
                                                         <div class="modal-content">
-                                                            <div class="modal-header  text-center d-block">
+                                                            <div class="modal-header text-center d-block">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
