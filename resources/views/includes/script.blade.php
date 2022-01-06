@@ -64,7 +64,7 @@
 
 
 <!-- ini script modal -->
-<!-- <div class="modal" id="mymodal" tabindex="-1" role="dialog">
+<div class="modal" id="mymodal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,4 +79,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

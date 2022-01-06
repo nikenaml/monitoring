@@ -94,15 +94,15 @@
                                             <td>{{$fa->ratio_false}}</td>
 
                                             <td>
-                                                <a href="#mymodal"
+                                                <a href="#mymodal{{$fa->id}}"
                                                     data-remote="{{ route('falsealarms.show', $fa->id) }}"
                                                     data-toggle="modal"
-                                                    data-target="#mymodal"
+                                                    data-target="#mymodal{{$fa->id}}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
-                                                <div id="mymodal" class="modal fade text-center">
+                                                <div id="mymodal{{$fa->id}}" class="modal fade text-center">
                                                     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document" style="max-width: 50%;">
                                                         <div class="modal-content">
                                                             <div class="modal-header text-center d-block">
