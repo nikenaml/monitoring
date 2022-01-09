@@ -15,17 +15,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::createMany([
+        User::create(
             [
             'name'=>'Admin1',
             'email'=>'admin1sl@gmail.com',
             'password'=> bcrypt('admin123'),
-            ],
-            [
-            'name'=>'Dev1',
-            'email'=>'dev1sl@gmail.com',
-            'password'=> bcrypt('dev123'),
             ]
-        ]);
+        );
     }
 }
